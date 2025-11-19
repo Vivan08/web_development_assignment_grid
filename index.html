@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page with Grid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        /* Main Grid Container */
+        .container {
+            display: grid;
+            grid-template-rows: auto auto auto auto auto auto auto;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #1e293b;
+            padding: 2rem;
+            display: grid;
+            place-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #ff6b6b;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: grid;
+        }
+
+        nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            text-align: center;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            padding: 8rem 2rem;
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #2d3748;
+            padding: 4rem 2rem;
+            display: grid;
+            place-items: start center;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Special Offer Section */
+        .special-offer {
+            background-color: #e8b55d;
+            padding: 4rem 2rem;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .offer-content {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+        }
+
+        .special-offer h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .cta-button {
+            background-color: #2d3748;
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            justify-self: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            background-color: #4db8a6;
+            padding: 4rem 2rem;
+            display: grid;
+            place-items: start center;
+        }
+
+        .why-content {
+            max-width: 1200px;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .why-choose h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: grid;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Image Section */
+        .image-section {
+            display: grid;
+            min-height: 400px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            padding: 3rem 2rem;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Grid Layout */
+        @media (max-width: 768px) {
+            nav ul {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem;
+                min-height: 50vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about h2,
+            .special-offer h2,
+            .why-choose h2 {
+                font-size: 2rem;
+            }
+
+            .about p,
+            .features {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+                padding: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">LOGO</div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Welcome to Our Site</h1>
+                <p>Discover amazing experiences</p>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="about-content">
+                <h2>About Our Company</h2>
+                <p>We are dedicated to providing exceptional service and innovative solutions to meet your needs. Our team of experts works tirelessly to ensure customer satisfaction.</p>
+                <p>With years of experience in the industry, we've helped thousands of clients achieve their goals and transform their businesses.</p>
+                <p>Our commitment to excellence and attention to detail sets us apart from the competition.</p>
+            </div>
+        </section>
+
+        <section class="special-offer">
+            <div class="offer-content">
+                <h2>Special Offer!</h2>
+                <button class="cta-button">Get Started Today</button>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <div class="why-content">
+                <h2>Why Choose Us?</h2>
+                <div class="features">
+                    <div class="feature-item">
+                        <span>24/7 Customer Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Industry Leading Experts</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Satisfaction Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-section">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=800&fit=crop" alt="Laptop with code on screen">
+        </section>
+
+        <footer id="contact">
+            <p>&copy; 2025 Your Company. All rights reserved.</p>
+            <p>Contact us: info@yourcompany.com</p>
+        </footer>
+    </div>
+</body>
+</html>
